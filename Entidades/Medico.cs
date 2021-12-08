@@ -14,11 +14,21 @@ namespace Entidades
             setApellidoYNombre(nombre, apellido);
             this.especialidad = Especialidades.devolverEspecialidadRandom().ToString();
             this.esta_atendiendo = false;
+            this.esta_disponible = true;
+        }
+
+
+        public Medico(string nombre, string apellido,bool disponibilidad)
+        {
+            setApellidoYNombre(nombre, apellido);
+            this.especialidad = Especialidades.devolverEspecialidadRandom().ToString();
+            this.esta_atendiendo = false;
+            this.esta_disponible = disponibilidad;
         }
 
         private string _especialidad;
         private bool _esta_atendiendo;
-
+        private bool _esta_disponible;
 
         public string especialidad
         {
@@ -32,6 +42,13 @@ namespace Entidades
             set { _esta_atendiendo = value; }
         }
 
+        public bool esta_disponible
+        {
+            get { return _esta_disponible; }
+            set { _esta_disponible = value; }
+        }
+
+    
         protected override void setApellidoYNombre(string nombre, string apellido)
         {
             this.nombre = nombre;
@@ -39,7 +56,9 @@ namespace Entidades
         }
 
     
-
+        /// <summary>
+        /// Cambia el estado del medico, si esta atendiendo a esta_atendido = true sino false
+        /// </summary>
         public void cambiarDisponibilidad()
         {
             esta_atendiendo = !esta_atendiendo;

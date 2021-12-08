@@ -54,7 +54,7 @@ namespace Entidades
             set
             {
                 _medico = value;
-                _medico.esta_atendiendo = true;
+                //_medico.esta_atendiendo = true;
             }
         }
         public string estado
@@ -87,6 +87,17 @@ namespace Entidades
 
         }
 
+        internal void inicializarConsulta()
+        {
+            
+            if (estado == "En espera")
+            {
+                
+                estado = "Iniciado";
+            }
 
+           
+
+        }
     }
 }

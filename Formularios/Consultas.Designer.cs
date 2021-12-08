@@ -29,12 +29,8 @@ namespace Formularios
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.dgvConsultas = new System.Windows.Forms.DataGridView();
@@ -44,6 +40,7 @@ namespace Formularios
             this.fecha_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnConsulta = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblError = new System.Windows.Forms.Label();
             this.lblSelecciono = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtResultado = new System.Windows.Forms.TextBox();
@@ -55,18 +52,8 @@ namespace Formularios
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dgvMedicosDisponibles = new System.Windows.Forms.DataGridView();
-            this.apellidoYnombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvEspecialidesDisponibles = new System.Windows.Forms.DataGridView();
-            this.especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblMedicoSeleccionado = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsultas)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicosDisponibles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidesDisponibles)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -98,9 +85,9 @@ namespace Formularios
             this.dgvConsultas.AllowUserToDeleteRows = false;
             this.dgvConsultas.AllowUserToResizeColumns = false;
             this.dgvConsultas.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvConsultas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
+            this.dgvConsultas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvConsultas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvConsultas.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvConsultas.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -117,8 +104,8 @@ namespace Formularios
             this.dgvConsultas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvConsultas.RowHeadersVisible = false;
             this.dgvConsultas.RowHeadersWidth = 20;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvConsultas.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
+            this.dgvConsultas.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvConsultas.RowTemplate.Height = 25;
             this.dgvConsultas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsultas.Size = new System.Drawing.Size(625, 494);
@@ -192,6 +179,17 @@ namespace Formularios
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(307, 494);
             this.panel1.TabIndex = 9;
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblError.ForeColor = System.Drawing.Color.IndianRed;
+            this.lblError.Location = new System.Drawing.Point(695, 78);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(218, 37);
+            this.lblError.TabIndex = 20;
+            this.lblError.Text = "Medico ocupado";
             // 
             // lblSelecciono
             // 
@@ -314,138 +312,13 @@ namespace Formularios
             this.label3.TabIndex = 10;
             this.label3.Text = "Paciente";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(27, 639);
-            this.label7.Margin = new System.Windows.Forms.Padding(0);
-            this.label7.Name = "label7";
-            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label7.Size = new System.Drawing.Size(202, 37);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Asignar Médico";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // dgvMedicosDisponibles
-            // 
-            this.dgvMedicosDisponibles.AllowUserToAddRows = false;
-            this.dgvMedicosDisponibles.AllowUserToDeleteRows = false;
-            this.dgvMedicosDisponibles.AllowUserToResizeColumns = false;
-            this.dgvMedicosDisponibles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvMedicosDisponibles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgvMedicosDisponibles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvMedicosDisponibles.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvMedicosDisponibles.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvMedicosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMedicosDisponibles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.apellidoYnombre});
-            this.dgvMedicosDisponibles.Location = new System.Drawing.Point(27, 752);
-            this.dgvMedicosDisponibles.MultiSelect = false;
-            this.dgvMedicosDisponibles.Name = "dgvMedicosDisponibles";
-            this.dgvMedicosDisponibles.ReadOnly = true;
-            this.dgvMedicosDisponibles.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvMedicosDisponibles.RowHeadersVisible = false;
-            this.dgvMedicosDisponibles.RowHeadersWidth = 20;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvMedicosDisponibles.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dgvMedicosDisponibles.RowTemplate.Height = 25;
-            this.dgvMedicosDisponibles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMedicosDisponibles.Size = new System.Drawing.Size(461, 358);
-            this.dgvMedicosDisponibles.TabIndex = 20;
-            this.dgvMedicosDisponibles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMedicosDisponibles_CellClick);
-            // 
-            // apellidoYnombre
-            // 
-            this.apellidoYnombre.DataPropertyName = "apellidoYnombre";
-            this.apellidoYnombre.HeaderText = "Apellido y Nombre";
-            this.apellidoYnombre.Name = "apellidoYnombre";
-            this.apellidoYnombre.ReadOnly = true;
-            // 
-            // dgvEspecialidesDisponibles
-            // 
-            this.dgvEspecialidesDisponibles.AllowUserToAddRows = false;
-            this.dgvEspecialidesDisponibles.AllowUserToDeleteRows = false;
-            this.dgvEspecialidesDisponibles.AllowUserToResizeColumns = false;
-            this.dgvEspecialidesDisponibles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvEspecialidesDisponibles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
-            this.dgvEspecialidesDisponibles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvEspecialidesDisponibles.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvEspecialidesDisponibles.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvEspecialidesDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEspecialidesDisponibles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.especialidad});
-            this.dgvEspecialidesDisponibles.Location = new System.Drawing.Point(521, 752);
-            this.dgvEspecialidesDisponibles.MultiSelect = false;
-            this.dgvEspecialidesDisponibles.Name = "dgvEspecialidesDisponibles";
-            this.dgvEspecialidesDisponibles.ReadOnly = true;
-            this.dgvEspecialidesDisponibles.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvEspecialidesDisponibles.RowHeadersVisible = false;
-            this.dgvEspecialidesDisponibles.RowHeadersWidth = 20;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvEspecialidesDisponibles.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.dgvEspecialidesDisponibles.RowTemplate.Height = 25;
-            this.dgvEspecialidesDisponibles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEspecialidesDisponibles.Size = new System.Drawing.Size(468, 358);
-            this.dgvEspecialidesDisponibles.TabIndex = 21;
-            this.dgvEspecialidesDisponibles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEspecialidesDisponibles_CellClick);
-            // 
-            // especialidad
-            // 
-            this.especialidad.DataPropertyName = "especialidad";
-            this.especialidad.HeaderText = "Especialidad";
-            this.especialidad.Name = "especialidad";
-            this.especialidad.ReadOnly = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(126)))), ((int)(((byte)(126)))));
-            this.label8.Location = new System.Drawing.Point(27, 687);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(576, 15);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "Seleccione un médico por apellido y nombre o por especialidad. Se actualizará aut" +
-    "omaticamente en la ficha ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(126)))), ((int)(((byte)(126)))));
-            this.label9.Location = new System.Drawing.Point(27, 718);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 15);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "Seleccionó a:";
-            // 
-            // lblMedicoSeleccionado
-            // 
-            this.lblMedicoSeleccionado.AutoSize = true;
-            this.lblMedicoSeleccionado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblMedicoSeleccionado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(126)))), ((int)(((byte)(126)))));
-            this.lblMedicoSeleccionado.Location = new System.Drawing.Point(109, 718);
-            this.lblMedicoSeleccionado.Name = "lblMedicoSeleccionado";
-            this.lblMedicoSeleccionado.Size = new System.Drawing.Size(91, 15);
-            this.lblMedicoSeleccionado.TabIndex = 24;
-            this.lblMedicoSeleccionado.Text = "Todavía a nadie";
-            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.ClientSize = new System.Drawing.Size(1045, 1061);
-            this.Controls.Add(this.lblMedicoSeleccionado);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.dgvEspecialidesDisponibles);
-            this.Controls.Add(this.dgvMedicosDisponibles);
-            this.Controls.Add(this.label7);
+            this.ClientSize = new System.Drawing.Size(1045, 642);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.dgvConsultas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitulo);
@@ -455,8 +328,6 @@ namespace Formularios
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsultas)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicosDisponibles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEspecialidesDisponibles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,13 +355,6 @@ namespace Formularios
         private System.Windows.Forms.Label lblSelecciono;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtResultado;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dgvMedicosDisponibles;
-        private System.Windows.Forms.DataGridView dgvEspecialidesDisponibles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoYnombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn especialidad;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblMedicoSeleccionado;
+        private System.Windows.Forms.Label lblError;
     }
 }

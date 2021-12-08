@@ -19,6 +19,7 @@ namespace Formularios
         private Medico medicoConMenosAtenciones;
         private string especialidadDeModa;
 
+
         public Estadisticas(Controlador controlador)
         {
             this.controlador = controlador;
@@ -58,48 +59,46 @@ namespace Formularios
             }
 
             
-        }
+        } 
 
+        /// <summary>
+        /// Delega la responsabilidad al controlador para buscar al medico con mas atenciones
+        /// y lo muestra
+        /// </summary>
         private void mostrarMedicoConMasAtenciones()
         {
             Dictionary<Medico, int> medicoConSusAtenciones = controlador.DevolverMedicoConMasAtenciones();
-            
-            foreach (KeyValuePair<Medico, int> par in medicoConSusAtenciones)
-            {
-                medicoConMasAtenciones = par.Key;
-                lblMedicoCantAtenciones.Text = par.Value.ToString();
-            }
 
-           
+            medicoConMasAtenciones = medicoConSusAtenciones.First().Key;
+            lblMedicoCantAtenciones.Text = medicoConSusAtenciones.First().Value.ToString();
+ 
             lbltxtMedicoConMasAtenciones.Text = medicoConMasAtenciones.apellidoYnombre;
            
         }
+        /// <summary>
+        /// Delega la responsabilidad al controlador para buscar al medico con menos atenciones
+        /// y lo muestra
+        /// </summary>
         private void mostrarMedicoConMenosAtenciones()
         {
             Dictionary<Medico, int> medicoConSusAtenciones = controlador.DevolverMedicoConMenosAtenciones();
 
-            foreach (KeyValuePair<Medico, int> par in medicoConSusAtenciones)
-            {
-                medicoConMenosAtenciones = par.Key;
-                lblCantMedicoMenosAtenciones.Text = par.Value.ToString();
-            }
-
-
+            medicoConMenosAtenciones = medicoConSusAtenciones.First().Key;
+            lblCantMedicoMenosAtenciones.Text = medicoConSusAtenciones.First().Value.ToString();
             lblTxtMedicoMenosAtenciones.Text = medicoConMenosAtenciones.apellidoYnombre;
 
         }
 
+        /// <summary>
+        /// Delega la responsabilidad al controlador para buscar la especialidad con mas atenciones
+        /// y lo muestra
+        /// </summary>
         private void mostrarEspecialidadDeModa()
         {
             Dictionary<string, int> especialidadConCantidad = controlador.DevolverEspecialidadConMasAtenciones();
-            foreach (KeyValuePair<string, int> par in especialidadConCantidad)
-            {
-                especialidadDeModa = par.Key;
-                lblCantEspecialidadMasAtendida.Text = par.Value.ToString();
-            }
-
+            especialidadDeModa = especialidadConCantidad.First().Key;
+            lblCantEspecialidadMasAtendida.Text = especialidadConCantidad.First().ToString();
             lblTxtEspecialidadMasAtendida.Text= especialidadDeModa;
-
         }
 
     }

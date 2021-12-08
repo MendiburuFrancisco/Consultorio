@@ -18,6 +18,10 @@ namespace Entidades
                             Hemoterapia}
 
 
+        /// <summary>
+        /// Toma de una lista de especialidades y retorna cualquiera
+        /// </summary>
+        /// <returns>Especialidad aleatoria</returns>
         public static Especialidad devolverEspecialidadRandom()
         {
             int numeroRandom = new Random().Next(1, 9);

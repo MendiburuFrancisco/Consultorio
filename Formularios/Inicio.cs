@@ -49,7 +49,10 @@ namespace Formularios
         {
 
         }
-
+        /// <summary>
+        /// Abro al form en un form padre para mantenerme dentro de la misma ventana
+        /// </summary>
+        /// <param name="formHijo"></param>
         private void abrirFormHijo(Form formHijo)
         {
             formHijoActual = formHijo;
@@ -62,7 +65,7 @@ namespace Formularios
             formHijo.Show();
 
         }
-
+ 
         private void btnLogo(object sender, EventArgs e)
         {
             misDatos ventanaDatos = new misDatos();
@@ -114,6 +117,7 @@ namespace Formularios
             this.btnConsultas.ForeColor = Color.White;
             this.btnConsultas.Image = global::Formularios.Properties.Resources.briefcase;
 
+            ventanaConsulta.actualizar();
             abrirFormHijo(ventanaConsulta);
           
         }

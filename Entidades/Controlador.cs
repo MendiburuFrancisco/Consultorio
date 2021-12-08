@@ -27,16 +27,25 @@ namespace Entidades
 
 
         /// <summary>
-        /// Devuelvo TODAS las consultas
+        /// Devuelve consultas activas (En espera e Iniciadas )
         /// </summary>
-        /// <returns>Lista de consultas</returns>
-        public List<Consulta> devolverConsultas()
+        /// <returns>Lista de consultas en espera e inciadas</returns>
+        public List<Consulta> devolverConsultasActivas()
         {
-            return consultas;
+            List<Consulta> consultaEnEsperaEIniciada = new List<Consulta>();
+            foreach(Consulta consulta in consultas)
+            {
+                if(consulta.medico != null && consulta.estado != "Finalizado" )
+                {
+                    consultaEnEsperaEIniciada.Add(consulta);
+                }
+
+            }
+            return consultaEnEsperaEIniciada;
         }
 
         /// <summary>
-        /// Busco la consulta segun el paciente y la hora, y el medico. Marco como "Iniciada" la consulta y cambio la disponibilidad del medico
+        /// Busco la consulta segun el paciente y la hora, y el medico. Marco como "En espera" la consulta 
         /// </summary>
         /// <param name="apellidoYnombrePaciente"></param>
         /// <param name="fecha_hora"></param>
@@ -52,12 +61,21 @@ namespace Entidades
                 {
                     
                     consulta.medico = medico;
-                    consulta.estado = "Iniciado";
+                    consulta.estado = "En espera";
                 }
             }
         }
         
-        
+        /// <summary>
+        /// Creo una consulta para un paciente y medico determinado que este disponible para atender
+        /// </summary>
+        public void asignarConsulta(string apellidoYnombrePaciente, string apellidoYnombreMedico)
+        {
+            Medico medicoAsignado = devolverMedicoDisponiblePorApellidoYNombre(apellidoYnombreMedico);
+            DateTime tiempoEnQueFueSolicitado = DateTime.Now;
+            
+           //  Consulta nuevaConsulta = new Consulta();
+        }
         
         /// <summary>
         /// Marca como terminada la consulta que está en curso
@@ -88,22 +106,53 @@ namespace Entidades
 
         }
 
-
         /// <summary>
-        /// DEBERIA DEVOLVER LOS PACIENTES EN ESPERA SEGUN EL ORDEN DE LLEGADA Y NO LO HACE
+        /// Marca como iniciada la consulta que está en curso
         /// </summary>
-        /// <returns>devuelve los pacientes en espera segun el orden de llegada</returns>
-        public List<Paciente> listaPacientesEnEspera()
+        /// <param name="medicoApellidoYNombre"></param>
+        /// <param name="pacienteApellidoYNombre"></param>
+        /// <param name="fechaYhora"></param>
+        /// <param name="resultado"></param
+        public bool inicializarConsulta(string medicoApellidoYNombre, string pacienteApellidoYNombre, DateTime fechaYhora, string resultado)
         {
-            List<Paciente> pacientesEnEspera = new List<Paciente>();
+            bool seInicializoCorrectamente = false;
             foreach (Consulta consulta in consultas)
             {
-                if (consulta.estado == "En espera")
+              
+                if (consulta.medico != null)
                 {
-                    pacientesEnEspera.Add(consulta.paciente);
+                    if (consulta.medico.apellidoYnombre == medicoApellidoYNombre
+                        &&
+                        consulta.paciente.apellidoYnombre == pacienteApellidoYNombre
+                        &&
+                        consulta.fecha_hora == fechaYhora
+                        && 
+                        !consulta.medico.esta_atendiendo
+                        )
+                    {
+                        seInicializoCorrectamente = true;
+                        consulta.resultado = resultado;
+                        consulta.inicializarConsulta();
+                        consulta.medico.cambiarDisponibilidad();
+                    }
                 }
             }
 
+            return seInicializoCorrectamente;
+
+        }
+
+        /// <summary>
+        /// Busca consultas que esten en "En espera" y que no tengan asignados medicos
+        /// </summary>
+        /// <returns>devuelve los pacientes en espera segun el orden de llegada</returns>
+        public List<Paciente> listaPacientesEnEspera()
+        { 
+            List<Paciente> pacientesEnEspera = new List<Paciente>();
+            foreach (Consulta consulta in devolverConsultasEnEsperaOrdenadosPorHoraSinMedico())
+            {
+                pacientesEnEspera.Add(consulta.paciente);
+            } 
             return pacientesEnEspera;                
         }
 
@@ -143,9 +192,10 @@ namespace Entidades
             consultas.Add(c4);
 
         }
- 
+
+
         /// <summary>
-        /// Busco sobre mi lista de medicos a aquellos que no estan atendiendo
+        /// Busco sobre mi lista de medicos a aquellos que estan disponibles para atender
         /// </summary>
         /// <returns>medicos con disponilibidad para atender</returns>
         public List<Medico> listaMedicosDisponibles()
@@ -154,7 +204,7 @@ namespace Entidades
 
             foreach(Medico medico in medicos)
             {
-                if (!medico.esta_atendiendo)
+                if (medico.esta_disponible)
                 {
                     medicosDisponibles.Add(medico);
                 }
@@ -162,6 +212,7 @@ namespace Entidades
 
             return medicosDisponibles;
         }
+
 
         /// <summary>
         /// Devuelvo la lista de especialidades que se encuentran disponibles
@@ -202,14 +253,7 @@ namespace Entidades
 
             return especialidadesDisponibles;
         }
-        /// <summary>
-        /// Lista de TODOS los medicos
-        /// </summary>
-        /// <returns>lista de medicos</returns>
-        public List<Medico> listaMedicos()
-        { 
-            return medicos;
-        }
+     
 
         /// <summary>
         ///Cuento la cantidad de consultas finalizadas por cada MEDICO
@@ -349,6 +393,9 @@ namespace Entidades
         /// </summary>
         /// <param name="apellidoYnombre"></param>
         /// <returns>Medico que cumpla con las condiciones establecidas</returns>
+        
+       
+       
         public Medico devolverMedicoDisponiblePorApellidoYNombre(string apellidoYnombre)
         {
             Medico medicoDisponible = null;
@@ -385,6 +432,17 @@ namespace Entidades
             return consultaSolicitada;
         }
 
+        public Consulta devolverConsultaSegunPaciente(string dni)
+        {
+            List<Consulta> consultasEnEspera = devolverConsultasEnEsperaOrdenadosPorHoraSinMedico();
+
+            return consultasEnEspera
+                .Select(consulta => consulta)
+                .Where(consulta => consulta.paciente.dni == dni)
+                .First();
+        }
+        
+        
         /// <summary>
         /// Busco el medico con MAS atenciones segun la cantidad de consultas
         /// </summary>
@@ -417,11 +475,13 @@ namespace Entidades
         public Dictionary<Medico, int> DevolverMedicoConMenosAtenciones()
         {
             Dictionary<Medico, int> contador = ContabilizarMedicosPorConsulta();
+            
             Medico medicoConMenosAtenciones = null;
-            int cantidadDeAtenciones = 0;
+            int cantidadDeAtenciones = contador.First().Value;
+
             foreach (KeyValuePair<Medico, int> par in contador)
             {
-                if (cantidadDeAtenciones <= par.Value)
+                if (par.Value <= cantidadDeAtenciones)
                 {
                     cantidadDeAtenciones = par.Value;
                     medicoConMenosAtenciones = par.Key;
@@ -459,6 +519,28 @@ namespace Entidades
         }
 
         /// <summary>
+        /// Busca las consultas en espera, sin medicos asignados y los ordeno
+        /// </summary>
+        /// <returns>lista de consultas ordenadas en espera y sin medicos asignados</returns>
+        public List<Consulta> devolverConsultasEnEsperaOrdenadosPorHoraSinMedico()
+        {
+            List<Consulta> consultasEnEspera = new List<Consulta>();
+
+            foreach (Consulta consulta in consultas)
+            {
+                if (consulta.estado == "En espera" && consulta.medico == null)
+                {
+                    consultasEnEspera.Add(consulta);
+                }
+            }
+
+            consultasEnEspera = consultasEnEspera.OrderBy(consulta => consulta.fecha_hora).ToList();
+           
+            return consultasEnEspera;
+        }
+
+
+        /// <summary>
         /// Busco la cantidad de consultas con estado "Finalizada"
         /// </summary>
         /// <returns>Lista de consultas finalizadas</returns>
@@ -468,6 +550,28 @@ namespace Entidades
 
             return consultasFinalizadas;
         }
+     
+        /// <summary>
+        /// Busca de un medico todas las consultas no atendidas
+        /// </summary>
+        /// <param name="medico"></param>
+        /// <returns>Lista de consultas en espera</returns>
+        public List<Consulta> devolverListaDeEsperaDeMedico(Medico medico)
+        {
+            List<Consulta> consultasEnEspera = new List<Consulta>();
+
+            foreach (Consulta consulta in consultas)
+            {
+                if (consulta.medico == medico && consulta.estado == "En espera")
+                {
+                    consultasEnEspera.Add(consulta);
+                }
+
+            }
+
+            return consultasEnEspera;
+        }
         
+
     }
 }

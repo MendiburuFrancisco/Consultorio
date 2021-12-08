@@ -11,27 +11,27 @@ using Entidades;
 
 namespace Formularios
 {
-    public partial class Consultas : FormBase
+    public partial class Consultas : Form
     {
         private Controlador controlador;
         public Consultas(Controlador controlador)
         {
             InitializeComponent();
-            this. controlador = controlador; 
+            this.controlador = controlador;
             dgvConsultas.AutoGenerateColumns = false;
-            dgvMedicosDisponibles.AutoGenerateColumns = false;            
+
             cargarTabla();
             esconderInformacionNoSeleccionada();
         }
 
-        protected override void  cargarTabla()
+        private void cargarTabla()
         {
             dgvConsultas.Rows.Clear();
-      
 
-            List<Consulta> consultas =  controlador.devolverConsultas();
-            
-            foreach(Consulta consulta in consultas)
+
+            List<Consulta> consultas = controlador.devolverConsultasActivas();
+
+            foreach (Consulta consulta in consultas)
             {
                 string medicoApellidoYNombre = (consulta.medico != null) ?
                     consulta.medico.apellidoYnombre
@@ -46,16 +46,16 @@ namespace Formularios
                     );
             }
             this.dgvConsultas.Sort(this.dgvConsultas.Columns["fecha_hora"], ListSortDirection.Ascending);
-            dgvEspecialidesDisponibles.DataSource = controlador.listaEspecialidadesDisponibles().Select(x => new { especialidad = x }).ToList();
-            dgvMedicosDisponibles.DataSource = controlador.listaMedicosDisponibles();
+
 
 
         }
 
 
-        protected override void esconderInformacionNoSeleccionada()
+        //protected override
+        private void esconderInformacionNoSeleccionada()
         {
-        
+
             label2.Visible = false; // lblTituloPaciente
             lblPaciente.Visible = false;
             label3.Visible = false; // lblTituloMedico
@@ -66,23 +66,18 @@ namespace Formularios
             lblFechaYHora.Visible = false;
             btnConsulta.Visible = false;
             label6.Visible = false;
-            label7.Visible = false;
-            label8.Visible = false;
-            label9.Visible = false;
-            lblMedicoSeleccionado.Visible = false;
 
-            dgvEspecialidesDisponibles.Visible = false;
-            dgvMedicosDisponibles.Visible = false;
             txtResultado.Visible = false;
             lblSelecciono.Visible = true;
-
+            lblError.Visible = false;
 
 
 
         }
-        protected override void mostrarInformacionSeleccionada()
+        //protected override
+        private void mostrarInformacionSeleccionada()
         {
-            
+
 
             lblSelecciono.Visible = false;
             label2.Visible = true; // lblTituloPaciente
@@ -95,42 +90,32 @@ namespace Formularios
             lblFechaYHora.Visible = true;
             btnConsulta.Visible = true;
 
-            if (lblMedico.Text.Length > 1)
+            if (lblEstado.Text == "Iniciado")
             {
-                label9.Visible = false;
-                label8.Visible = false;
-                label7.Visible = false;
-                dgvEspecialidesDisponibles.Visible = false;
-                dgvMedicosDisponibles.Visible = false;
-                label6.Visible = true; 
+
+                label6.Visible = true;
                 txtResultado.Visible = true;
-                lblMedicoSeleccionado.Visible = false;
+
                 btnConsulta.Text = "Finalizar consulta";
 
             }
             else
             {
 
-                label8.Visible = true;
-                label7.Visible = true;
-                label6.Visible = false; 
-                label9.Visible = true;
-                lblMedicoSeleccionado.Visible = true;
-                lblMedicoSeleccionado.Text = "Todavía a nadie";
-                dgvEspecialidesDisponibles.Visible = true;
-                dgvMedicosDisponibles.Visible = true;
+                label6.Visible = false;
+
                 txtResultado.Visible = false;
-                
-                btnConsulta.Text = "Asignar medico";
+
+                btnConsulta.Text = "Iniciar consulta";
             }
-             
+
         }
- 
+
         private void dgvConsultas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-        
+
         /// <summary>
         /// Luego de seleccionar una fila, carga los datos de la misma sobre labels y muestra 
         /// informacion segun el objetivo del usuario
@@ -139,9 +124,10 @@ namespace Formularios
         /// <param name="e"></param>
         private void dgvConsultas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if( dgvConsultas.SelectedRows != null)
+            if (dgvConsultas.SelectedRows != null)
             {
-               
+                lblError.Visible = false;
+
                 lblMedico.Text = ((string)dgvConsultas.CurrentRow.Cells["medico"].Value);
                 lblPaciente.Text = ((string)dgvConsultas.CurrentRow.Cells["paciente"].Value);
                 lblEstado.Text = ((string)dgvConsultas.CurrentRow.Cells["estado"].Value);
@@ -149,6 +135,11 @@ namespace Formularios
                 mostrarInformacionSeleccionada();
 
             }
+        }
+
+        internal void actualizar()
+        {
+            cargarTabla();
         }
 
 
@@ -160,9 +151,13 @@ namespace Formularios
         /// <param name="e"></param>
         private void btnConsulta_Click(object sender, EventArgs e)
         {
-            TerminarConsulta();
-            AsignarMedico();
-            esconderInformacionNoSeleccionada();
+           
+            if (dgvConsultas.SelectedRows != null)
+            {
+                TerminarConsulta();
+                InicializarConsulta();
+                
+            }
         }
 
         /// <summary>
@@ -170,90 +165,66 @@ namespace Formularios
         /// la responsabilidad al controlador para finalizarla
         /// </summary>
         private void TerminarConsulta()
-        {
-            if (dgvConsultas.SelectedRows != null)
-            {
-                
-        
-                if (lblEstado.Text == "Iniciado" && lblMedico.Text.Length > 1)
+        { 
+            if (lblEstado.Text == "Iniciado") {
+                if(txtResultado.Text.Length > 0)
                 {
+
                     controlador.finalizarConsulta(
                         lblMedico.Text,
                         lblPaciente.Text,
                         (DateTime)dgvConsultas.CurrentRow.Cells["fecha_hora"].Value,
                         txtResultado.Text
                         );
- 
-                    cargarTabla(); 
+
+                    cargarTabla();
+                    esconderInformacionNoSeleccionada();
+
+                }
+                else
+                {
+                    mostrarError("Asigne un resultado");
                 }
             }
+            
         }
         /// <summary>
         /// Luego de seleccionar una fila con una consulta en curso, delega
-        /// la responsabilidad al controlador para agregar un medico
+        /// la responsabilidad al controlador para inicializarla
         /// </summary>
-        private void AsignarMedico()
+        private void InicializarConsulta()
         {
-             
-         
-                if (lblEstado.Text == "En espera" && lblMedico.Text.Length > 1)
-                {
 
-                    controlador.asignarMedicoAConsulta(
-                        lblPaciente.Text,
-                        DateTime.Parse(lblFechaYHora.Text),
-                        lblMedico.Text
-                        ); 
-                cargarTabla();
-                   
-                }
-        }
-
-        /// <summary>
-        /// Luego de seleccionar una fila de una especialidad, carga el medico de la especialidad
-        /// en los labels correspondientes
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dgvEspecialidesDisponibles_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvEspecialidesDisponibles.SelectedRows != null)
+            if (lblEstado.Text == "En espera")
             {
-                string especialidad = dgvEspecialidesDisponibles.CurrentRow.Cells["especialidad"].Value.ToString();
-                Medico medico = controlador.devolverMedicoDisponiblePorEspecialidad(especialidad);
+                bool seInicializo = controlador.inicializarConsulta(
+                     lblMedico.Text,
+                     lblPaciente.Text,
+                     (DateTime)dgvConsultas.CurrentRow.Cells["fecha_hora"].Value,
+                     txtResultado.Text
+                     );
 
-                if(medico != null)
+                if (seInicializo)
                 {
-                    lblMedicoSeleccionado.Text = medico.apellidoYnombre;
-                    lblMedico.Text = medico.apellidoYnombre;
+                    cargarTabla();
+                    esconderInformacionNoSeleccionada();
                 }
-
+                else
+                {
+                    mostrarError("Medico ocupado");
+                }
+          
 
             }
 
         }
 
-        /// <summary>
-        /// Luego de seleccionar una fila de medicos disponibles, carga informacion del medico
-        /// en los labels correspondientes
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dgvMedicosDisponibles_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void mostrarError(string mensajeDeError)
         {
-            if (dgvMedicosDisponibles.SelectedRows != null)
-            {
-                string apellidoYnombre = dgvMedicosDisponibles.CurrentRow.Cells["apellidoYnombre"].Value.ToString();
-                Medico medico = controlador.devolverMedicoDisponiblePorApellidoYNombre(apellidoYnombre);
-
-                if (medico != null)
-                {
-                    lblMedicoSeleccionado.Text = medico.apellidoYnombre;
-                    lblMedico.Text = medico.apellidoYnombre;
-                }
-
-
-            }
+            lblError.Visible = true;
+            lblError.Text = mensajeDeError;
         }
+
+
     }
 }

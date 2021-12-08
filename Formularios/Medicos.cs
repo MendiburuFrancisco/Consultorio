@@ -11,7 +11,7 @@ using Entidades;
 
 namespace Formularios
 {
-    public partial class Medicos : Form
+    public partial class Medicos : FormBase
     {
         Controlador controlador;
         public Medicos(Controlador controlador)
@@ -25,9 +25,9 @@ namespace Formularios
 
         }
 
-        private void cargarTabla()
+        protected override void cargarTabla()
         {
-            dgvMedicos.DataSource = controlador.listaMedicos();
+            dgvMedicos.DataSource = controlador.listaMedicosDisponibles();
         }
     
     }
