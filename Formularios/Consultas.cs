@@ -14,6 +14,11 @@ namespace Formularios
     public partial class Consultas : Form
     {
         private Controlador controlador;
+
+        /// <summary>
+        /// Inicializo la ventana con el controlador que contiene la informacion de las consultas
+        /// </summary>
+        /// <param name="controlador"></param>
         public Consultas(Controlador controlador)
         {
             InitializeComponent();
@@ -24,6 +29,9 @@ namespace Formularios
             esconderInformacionNoSeleccionada();
         }
 
+        /// <summary>
+        /// Cargo las tablas correspondientes
+        /// </summary>
         private void cargarTabla()
         {
             dgvConsultas.Rows.Clear();
@@ -51,8 +59,9 @@ namespace Formularios
 
         }
 
-
-        //protected override
+       /// <summary>
+       /// Al momento de hacer click en el boton o al ingresar al pantalla esconde informacion para evitar errores
+       /// </summary>
         private void esconderInformacionNoSeleccionada()
         {
 
@@ -74,7 +83,10 @@ namespace Formularios
 
 
         }
-        //protected override
+ 
+        /// <summary>
+        /// Al momento de hacer click sobre una tabla muestra elementos que son pertinentes para guardar su informacion en ellos
+        /// </summary>
         private void mostrarInformacionSeleccionada()
         {
 
@@ -111,11 +123,6 @@ namespace Formularios
 
         }
 
-        private void dgvConsultas_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Luego de seleccionar una fila, carga los datos de la misma sobre labels y muestra 
         /// informacion segun el objetivo del usuario
@@ -137,11 +144,13 @@ namespace Formularios
             }
         }
 
+        /// <summary>
+        /// Actualiza las tablas correspondientes
+        /// </summary>
         internal void actualizar()
         {
             cargarTabla();
         }
-
 
         /// <summary>
         /// Dependiendo del objetivo del usuario, puede finalizar una consulta o permitir
@@ -188,6 +197,7 @@ namespace Formularios
             }
             
         }
+
         /// <summary>
         /// Luego de seleccionar una fila con una consulta en curso, delega
         /// la responsabilidad al controlador para inicializarla
@@ -218,7 +228,11 @@ namespace Formularios
             }
 
         }
-
+       
+        /// <summary>
+        /// Habilito un label que muestra un rojo el error
+        /// </summary>
+        /// <param name="mensajeDeError"></param>
         private void mostrarError(string mensajeDeError)
         {
             lblError.Visible = true;

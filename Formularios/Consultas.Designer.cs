@@ -40,7 +40,6 @@ namespace Formularios
             this.fecha_hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnConsulta = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblError = new System.Windows.Forms.Label();
             this.lblSelecciono = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtResultado = new System.Windows.Forms.TextBox();
@@ -52,6 +51,7 @@ namespace Formularios
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsultas)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -111,7 +111,6 @@ namespace Formularios
             this.dgvConsultas.Size = new System.Drawing.Size(625, 494);
             this.dgvConsultas.TabIndex = 5;
             this.dgvConsultas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultas_CellClick);
-            this.dgvConsultas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultas_CellContentClick);
             // 
             // paciente
             // 
@@ -179,17 +178,6 @@ namespace Formularios
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(307, 494);
             this.panel1.TabIndex = 9;
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblError.ForeColor = System.Drawing.Color.IndianRed;
-            this.lblError.Location = new System.Drawing.Point(695, 78);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(218, 37);
-            this.lblError.TabIndex = 20;
-            this.lblError.Text = "Medico ocupado";
             // 
             // lblSelecciono
             // 
@@ -311,6 +299,17 @@ namespace Formularios
             this.label3.Size = new System.Drawing.Size(52, 15);
             this.label3.TabIndex = 10;
             this.label3.Text = "Paciente";
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblError.ForeColor = System.Drawing.Color.IndianRed;
+            this.lblError.Location = new System.Drawing.Point(695, 78);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(218, 37);
+            this.lblError.TabIndex = 20;
+            this.lblError.Text = "Medico ocupado";
             // 
             // Consultas
             // 

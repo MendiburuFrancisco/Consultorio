@@ -40,15 +40,7 @@ namespace Formularios
 
         // Metodos 
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void lblTitulo_Click(object sender, EventArgs e)
-        {
-
-        }
         /// <summary>
         /// Abro al form en un form padre para mantenerme dentro de la misma ventana
         /// </summary>
@@ -66,22 +58,6 @@ namespace Formularios
 
         }
  
-        private void btnLogo(object sender, EventArgs e)
-        {
-            misDatos ventanaDatos = new misDatos();
-            abrirFormHijo(ventanaDatos);
-        }
-
-        private void btnInicio_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnInicio_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void desactivarBotones()
         {
             Color tipografiaDesactivada = Color.FromArgb(229, 229, 229);
@@ -97,9 +73,7 @@ namespace Formularios
 
             this.btnPacientes.ForeColor = tipografiaDesactivada;
             this.btnPacientes.Image = global::Formularios.Properties.Resources.users_off;
-        }
-
-
+        } 
 
         private void btnEstadistica_Click(object sender, EventArgs e)
         {
@@ -143,8 +117,32 @@ namespace Formularios
             
         }
 
-   
- 
+        private void btnLogo(object sender, EventArgs e)
+        {
+            misDatos ventanaDatos = new misDatos();
+            abrirFormHijo(ventanaDatos);
+        }
 
+
+
+ 
+        private void btnInicio_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitulo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

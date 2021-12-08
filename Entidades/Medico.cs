@@ -9,6 +9,11 @@ namespace Entidades
     public class Medico : Persona
     {
     
+        /// <summary>
+        /// Inicializo medico con nombre, apellido, le establezco una especialidad random  y lo establezco como disponible
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
         public Medico(string nombre, string apellido)
         {
             setApellidoYNombre(nombre, apellido);
@@ -17,7 +22,11 @@ namespace Entidades
             this.esta_disponible = true;
         }
 
-
+        /// <summary>
+        /// Inicializo medico con nombre, apellido y disponibilidad, tambien le establezco una especialidad random  
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
         public Medico(string nombre, string apellido,bool disponibilidad)
         {
             setApellidoYNombre(nombre, apellido);

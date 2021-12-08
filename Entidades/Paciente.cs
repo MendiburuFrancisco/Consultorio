@@ -7,19 +7,14 @@ using System.Threading.Tasks;
 namespace Entidades
 {
     public class Paciente : Persona
-    {
-
-     
-        public Paciente(string dni,string nombre, string apellido, int edad, string obraSocial)
-        {
-            this.dni = dni;
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.edad = edad;
-            this.obraSocial = obraSocial; 
- 
-        }
-
+    { 
+        /// <summary>
+        /// Inicializo con los datos basicos de un paciente y la obra social establezco una aleatoria
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="edad"></param>
         public Paciente(string dni,string nombre, string apellido, int edad)
         {
             this.dni = dni;
@@ -28,17 +23,7 @@ namespace Entidades
             this.edad = edad;
             this.obraSocial = ObrasSociales.devolverObraSocialRandom().ToString();
         }
-
-        public Paciente()
-        {
-            this.nombre = "Francisco";
-            this.apellido = "Mendiburu";
-            this.edad = 21;
-            obraSocial = null;
-
-
-        }
-
+  
 
         private string _dni;
         private int _edad;
@@ -50,36 +35,21 @@ namespace Entidades
             set { _edad = value; }
         }
 
+
         public string obraSocial
         {
             get { return _obraSocial; }
-            set 
-            {
-                if (value == ObrasSociales.ObraSocial.NoTiene.ToString()
-                    || value == ObrasSociales.ObraSocial.CoberturaBasica.ToString()
-                    || value == ObrasSociales.ObraSocial.CoberturaCompleta.ToString()
-                    )
-                {
-                    _obraSocial = value; 
-                }
-                else
-                {
-                    _obraSocial = ObrasSociales.ObraSocial.NoTiene.ToString();
-                }
-               
-            
-            }
+            set {  _obraSocial = value;}
         }
 
         public string dni
         {
             get { return _dni; }
-            set
-            {
-                _dni = value;
-            }
+            set {  _dni = value; }
         }
 
+      
 
+       
     }
 }

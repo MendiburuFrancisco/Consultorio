@@ -26,6 +26,9 @@ namespace Formularios
             esconderInformacionNoSeleccionada();
         }
 
+        /// <summary>
+        /// Cargo las tablas correspondientes
+        /// </summary>
         private void cargarTabla()
         {
             dgvPacientes.DataSource = controlador.listaPacientesEnEspera();
@@ -34,6 +37,9 @@ namespace Formularios
 
         }
 
+        /// <summary>
+        /// Limpio y actualizo las tablas correspondientes 
+        /// </summary>
         public void actualizarTabla()
         {
 
@@ -41,6 +47,9 @@ namespace Formularios
             cargarTabla();
         }
 
+        /// <summary>
+        /// Al momento de hacer click en el boton o al ingresar al pantalla esconde informacion para evitar errores
+        /// </summary>
         private void esconderInformacionNoSeleccionada()
         {
 
@@ -68,6 +77,11 @@ namespace Formularios
         }
 
 
+        /// <summary>
+        /// Luego de seleccionar una fila, carga los datos de la misma sobre labels y la muestra 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mostrarInformacionSeleccionada()
         {
 
@@ -165,16 +179,26 @@ namespace Formularios
             AsignarMedico();
         }
 
+        /// <summary>
+        /// Luego de seleccionar una fila de medicos disponibles, carga informacion del medico
+        /// en los labels correspondientes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AsignarMedico()
         {
-             
-                controlador.asignarMedicoAConsulta(
+             if(dgvEspecialidesDisponibles.SelectedRows != null ||
+                dgvMedicosDisponibles.SelectedRows != null)
+            {
+
+             controlador.asignarMedicoAConsulta(
                     lblPaciente.Text,
                     DateTime.Parse(lblFechaYHora.Text),
                     lblMedico.Text
                     );
                 cargarTabla();
- 
+                esconderInformacionNoSeleccionada();
+            }
         }
 
     }

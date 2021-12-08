@@ -40,5 +40,8 @@ namespace Entidades
 
             return especialidad;
         }
+
+  
     }
+
 }

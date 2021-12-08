@@ -9,6 +9,11 @@ namespace Entidades
     public class Consulta
     {
         
+        /// <summary>
+        /// Inicia la consulta con un paciente y medico determinado a hora actual
+        /// </summary>
+        /// <param name="paciente"></param>
+        /// <param name="medico"></param>
         public Consulta(Paciente paciente, Medico medico)
         {
             medico.cambiarDisponibilidad();
@@ -17,7 +22,10 @@ namespace Entidades
             this.estado = "Iniciado";
             this.fecha_hora = DateTime.Now;
         }
-
+        /// <summary>
+        ///  Inicia la consulta con un paciente a una hora aleatoria a partir de la actual y lo pone en espera
+        /// </summary>
+        /// <param name="paciente"></param>
         public Consulta(Paciente paciente)
         {
             var minutosRandom = new Random().Next(1, 20);
@@ -27,11 +35,23 @@ namespace Entidades
             this.fecha_hora = DateTime.Now.AddMinutes(minutosRandom).AddSeconds(segundosRandom);
         }
 
-        public Consulta(Paciente paciente,DateTime tiempoYdia)
+        /// <summary>
+        /// Crea y finaliza una consulta en un horario anterior al actual
+        /// </summary>
+        /// <param name="paciente"></param>
+        /// <param name="medico"></param>
+        /// <param name="estadoConsulta"></param>
+        public Consulta(Paciente paciente,Medico medico, bool estadoConsulta)
         {
             this.paciente = paciente;
-            this.estado = "En espera";
-            this.fecha_hora = tiempoYdia;
+            this.medico = medico;
+            var minutosRandom = new Random().Next(-40, 0);
+            var segundosRandom = new Random().Next(-60, 0);
+            this.fecha_hora = DateTime.Now.AddMinutes(minutosRandom).AddSeconds(segundosRandom);
+            if (!estadoConsulta)
+            {
+                this.estado = "Finalizado";
+            }
         }
 
 
@@ -74,6 +94,10 @@ namespace Entidades
             set { _resultado = value; }
         }
 
+        /// <summary>
+        /// De Iniciado pasa a Finalizado
+        /// </summary>
+        /// <returns></returns>
         public bool finalizarConsulta()
         {
             bool finalizoCorrectamente = false;
@@ -87,6 +111,9 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// De En Espera pasa a Iniciado
+        /// </summary>
         internal void inicializarConsulta()
         {
             

@@ -24,13 +24,19 @@ namespace Entidades
             set { _apellido = value; }
         }
 
+
         public string apellidoYnombre
         {
             get { return _nombre + " " + _apellido; }
         }
 
+        /// <summary>
+        /// Guarda nombre y apellido de la persona
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
         protected virtual void setApellidoYNombre(string nombre, string apellido) { }
 
-       // protected abstract void ingresarDatos();
+     
     }
 }

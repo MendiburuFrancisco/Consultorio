@@ -29,12 +29,12 @@ namespace Formularios
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPacientes = new System.Windows.Forms.DataGridView();
             this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoYnombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,9 +73,11 @@ namespace Formularios
             // 
             this.dgvPacientes.AllowUserToAddRows = false;
             this.dgvPacientes.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvPacientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvPacientes.AllowUserToResizeColumns = false;
+            this.dgvPacientes.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
+            this.dgvPacientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPacientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPacientes.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvPacientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -92,8 +94,8 @@ namespace Formularios
             this.dgvPacientes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvPacientes.RowHeadersVisible = false;
             this.dgvPacientes.RowHeadersWidth = 20;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvPacientes.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
+            this.dgvPacientes.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPacientes.RowTemplate.Height = 25;
             this.dgvPacientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPacientes.Size = new System.Drawing.Size(625, 494);
@@ -189,9 +191,9 @@ namespace Formularios
             this.dgvEspecialidesDisponibles.AllowUserToDeleteRows = false;
             this.dgvEspecialidesDisponibles.AllowUserToResizeColumns = false;
             this.dgvEspecialidesDisponibles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvEspecialidesDisponibles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
+            this.dgvEspecialidesDisponibles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEspecialidesDisponibles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEspecialidesDisponibles.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEspecialidesDisponibles.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -205,8 +207,8 @@ namespace Formularios
             this.dgvEspecialidesDisponibles.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvEspecialidesDisponibles.RowHeadersVisible = false;
             this.dgvEspecialidesDisponibles.RowHeadersWidth = 20;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvEspecialidesDisponibles.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
+            this.dgvEspecialidesDisponibles.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvEspecialidesDisponibles.RowTemplate.Height = 25;
             this.dgvEspecialidesDisponibles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEspecialidesDisponibles.Size = new System.Drawing.Size(468, 358);
@@ -226,9 +228,9 @@ namespace Formularios
             this.dgvMedicosDisponibles.AllowUserToDeleteRows = false;
             this.dgvMedicosDisponibles.AllowUserToResizeColumns = false;
             this.dgvMedicosDisponibles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvMedicosDisponibles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
+            this.dgvMedicosDisponibles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvMedicosDisponibles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMedicosDisponibles.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvMedicosDisponibles.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -242,8 +244,8 @@ namespace Formularios
             this.dgvMedicosDisponibles.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvMedicosDisponibles.RowHeadersVisible = false;
             this.dgvMedicosDisponibles.RowHeadersWidth = 20;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
-            this.dgvMedicosDisponibles.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(110)))), ((int)(((byte)(135)))));
+            this.dgvMedicosDisponibles.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvMedicosDisponibles.RowTemplate.Height = 25;
             this.dgvMedicosDisponibles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMedicosDisponibles.Size = new System.Drawing.Size(461, 358);
@@ -438,7 +440,7 @@ namespace Formularios
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.ClientSize = new System.Drawing.Size(1045, 1061);
+            this.ClientSize = new System.Drawing.Size(1062, 1061);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblMedicoSeleccionado);
             this.Controls.Add(this.label9);

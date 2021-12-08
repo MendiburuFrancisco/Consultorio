@@ -19,7 +19,10 @@ namespace Formularios
         private Medico medicoConMenosAtenciones;
         private string especialidadDeModa;
 
-
+        /// <summary>
+        /// Inicializo la ventana con el controlador que contiene la informacion de las consultas, pacientes y medicos
+        /// </summary>
+        /// <param name="controlador"></param>
         public Estadisticas(Controlador controlador)
         {
             this.controlador = controlador;
@@ -30,6 +33,9 @@ namespace Formularios
 
         }
 
+        /// <summary>
+        /// Limpio y actualizo las tablas correspondientes 
+        /// </summary>
         public void actualizar()
         {
             dgvMedicosPorPaciente.Rows.Clear();
@@ -41,6 +47,9 @@ namespace Formularios
 
         }
 
+        /// <summary>
+        /// Cargo las tablas correspondientes
+        /// </summary>
         public void cargarTabla()
         {
             Dictionary<Medico, int> medicos = controlador.devolverMedicosOrdenadosPorConsulta();
@@ -97,7 +106,7 @@ namespace Formularios
         {
             Dictionary<string, int> especialidadConCantidad = controlador.DevolverEspecialidadConMasAtenciones();
             especialidadDeModa = especialidadConCantidad.First().Key;
-            lblCantEspecialidadMasAtendida.Text = especialidadConCantidad.First().ToString();
+            lblCantEspecialidadMasAtendida.Text = especialidadConCantidad.First().Value.ToString();
             lblTxtEspecialidadMasAtendida.Text= especialidadDeModa;
         }
 

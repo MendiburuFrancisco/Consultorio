@@ -11,6 +11,10 @@ namespace Entidades
 
         public enum ObraSocial { NoTiene, CoberturaBasica, CoberturaCompleta }
 
+        /// <summary>
+        /// Devuelvo obras sociales de manera aleatoria
+        /// </summary>
+        /// <returns></returns>
         public static ObraSocial devolverObraSocialRandom()
         {
             int numeroRandom = new Random().Next(1, 4);
